@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-responsive-sm table-hover table-outline mb-0">
+                            <table class="table table-responsive-sm table-hover table-outline mb-0" >
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="text-center">
@@ -35,13 +35,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
                                     @foreach ($siswas as $siswa)
                                     <tr>
                                         <td class="text-center">
-                                            1
+                                            {{$i}}
+                                            @php
+                                                $i++;
+                                            @endphp
                                         </td>
                                         <td>
-                                            <div>{{$siswa['nama']}}</div>
+                                            <div>{{ucwords($siswa['nama'])}}</div>
                                             <div class="small text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
                                         </td>
                                         <td>

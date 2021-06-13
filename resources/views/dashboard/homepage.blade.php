@@ -31,11 +31,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div>{{$siswa['nama']}}</div>
-                                            <div class="small text-muted">
-                                                <span>New</span> | Registered: Jan
-                                                1, 2015
-                                            </div>
+                                            <div>{{ucwords($siswa['nama'])}}</div>
                                         </td>
                                         <td>
                                             <div class="clearfix">

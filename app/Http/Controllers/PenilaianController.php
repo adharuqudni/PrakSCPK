@@ -87,6 +87,12 @@ class PenilaianController extends Controller
         foreach ($siswas as $key => $value) {
            $siswas[$key]['totalSkor'] = $wawasan_umum[$key] + $kemampuan_bicara[$key] + $karya_cipta[$key] + $kepimimpinan[$key] + $prestasi[$key] + $perilaku[$key] + $usia[$key];
         }
+
+        
+
+        usort($siswas, function ($object1, $object2) {
+            return $object2['totalSkor'] > $object1['totalSkor'];
+        });
         return view('dashboard.homepage')->with([
             'siswas' => $siswas,
         ]);
