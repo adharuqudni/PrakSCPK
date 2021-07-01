@@ -51,23 +51,16 @@ class PenilaianController extends Controller
 
         $model = Penilaian::all();
         $siswas = $model->toArray();
-
-        foreach($siswas as $key => $value){
-            array_push($wawasan_umum, $value['wawasan_umum']);
-            array_push($kemampuan_bicara, $value['kemampuan_bicara']);
-            array_push($karya_cipta, $value['karya_cipta']);
-            array_push($kepimimpinan, $value['kepimimpinan']);
-            array_push($prestasi, $value['prestasi']);
-            array_push($perilaku, $value['perilaku']);
-            array_push($usia, $value['usia']);
+        foreach($siswas as $key => $siswa){
+            array_push($wawasan_umum, $siswa['wawasan_umum']);
+            array_push($kemampuan_bicara, $siswa['kemampuan_bicara']);
+            array_push($karya_cipta, $siswa['karya_cipta']);
+            array_push($kepimimpinan, $siswa['kepimimpinan']);
+            array_push($prestasi, $siswa['prestasi']);
+            array_push($perilaku, $siswa['perilaku']);
+            array_push($usia, $siswa['usia']);
         }
-        // dd($wawasan_umum,
-        // $kemampuan_bicara,
-        // $karya_cipta,
-        // $kepimimpinan,
-        // $prestasi,
-        // $perilaku,
-        // $usia);
+        //mencari nilai tertinggi tiap masing masing kriteria
         $max_wawasan_umum = max($wawasan_umum);
         $max_kemampuan_bicara = max($kemampuan_bicara);
         $max_karya_cipta = max($karya_cipta);
@@ -75,7 +68,7 @@ class PenilaianController extends Controller
         $max_prestasi = max($prestasi);
         $max_perilaku = max($perilaku);
         $max_usia = max($usia);
-        // dd($max_karya_cipta,$max_kemampuan_bicara,$max_kepimimpinan,$max_perilaku,$max_prestasi,$max_usia,$max_wawasan_umum);
+        //pembagian masing masing nilai kriteria oleh nilai maximum
         $wawasan_umum = array_map( function($val,$divider,$multiplier) { return $val/$divider*$multiplier ; }, $wawasan_umum,array_fill(0, count($wawasan_umum), $max_wawasan_umum),array_fill(0, count($wawasan_umum), $bobot['wawasan_umum']));
         $kemampuan_bicara = array_map( function($val,$divider,$multiplier) { return $val/$divider*$multiplier ; }, $kemampuan_bicara,array_fill(0, count($kemampuan_bicara), $max_kemampuan_bicara),array_fill(0, count($kemampuan_bicara), $bobot['kemampuan_bicara']));
         $karya_cipta = array_map( function($val,$divider,$multiplier) { return $val/$divider*$multiplier ; }, $karya_cipta,array_fill(0, count($karya_cipta), $max_karya_cipta),array_fill(0, count($karya_cipta), $bobot['karya_cipta']));
@@ -88,11 +81,10 @@ class PenilaianController extends Controller
            $siswas[$key]['totalSkor'] = $wawasan_umum[$key] + $kemampuan_bicara[$key] + $karya_cipta[$key] + $kepimimpinan[$key] + $prestasi[$key] + $perilaku[$key] + $usia[$key];
         }
 
-        
-
         usort($siswas, function ($object1, $object2) {
             return $object2['totalSkor'] > $object1['totalSkor'];
         });
+        
         return view('dashboard.homepage')->with([
             'siswas' => $siswas,
         ]);

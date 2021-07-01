@@ -48,7 +48,7 @@
                                         </td>
                                         <td>
                                             <div>{{ucwords($siswa['nama'])}}</div>
-                                            <div class="small text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
+                                            <div class="small text-muted">Kecamatan Binamu</div>
                                         </td>
                                         <td>
                                             <div class="text-center">

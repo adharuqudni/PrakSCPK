@@ -13,9 +13,6 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="text-center">
-                                            <svg class="c-icon">
-                                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-people"></use>
-                                            </svg>
                                         </th>
                                         <th>Nama siswa</th>
                                         <th>Persentase Nilai</th>
@@ -24,31 +21,33 @@
                                 <tbody>
                                     @foreach ($siswas as $siswa)
                                         <tr>
-                                        <td class="text-center">
-                                            <div class="c-avatar">
-                                                <img class="c-avatar-img" src="assets/img/avatars/1.jpg"
-                                                    alt="user@email.com" /><span class="c-avatar-status bg-success"></span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>{{ucwords($siswa['nama'])}}</div>
-                                        </td>
-                                        <td>
-                                            <div class="clearfix">
-                                                <div class="float-left">
-                                                    <strong>{{$siswa['totalSkor']*100}}%</strong>
+                                            <td class="text-center">
+                                                <div class="c-avatar">
+                                                    <svg class="c-icon">
+                                                        <use
+                                                            xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-people">
+                                                        </use>
+                                                    </svg>
                                                 </div>
-                                                <div class="float-right">
-                                                    <small class="text-muted">Jun 11, 2015 - Jul 10,
-                                                        2015</small>
+                                            </td>
+                                            <td>
+                                                <div>{{ ucwords($siswa['nama']) }}</div>
+                                            </td>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <div class="float-left">
+                                                        <strong>{{ $siswa['totalSkor'] * 100 }}%</strong>
+                                                    </div>
+                                                    <div class="float-right">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="progress progress-xs">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$siswa['totalSkor']*100}}%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: {{ $siswa['totalSkor'] * 100 }}%" aria-valuenow="50"
+                                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
